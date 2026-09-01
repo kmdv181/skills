@@ -58,6 +58,18 @@ is worse than no fact, because it is trusted.
   fire constantly. Arms 1 and 3 were re-run and both held. Arm 2 was not, and
   did not need to be: with the plugin disabled the description is not in context
   at all, so no edit to it can change that arm's result.
+- **A literal trigger word in a description is load-bearing; a paraphrase did
+  not replace it.** On PR review, `nightcap`'s non-English wrap-up word was
+  removed from the description in favour of "or a similar wrap-up word in their
+  language". Re-measured 2026-09-01 from a scratch-marketplace install
+  (~$0.42/run): an English wrap-up phrase fired the skill, and the fired
+  session correctly refused to nightcap in a beads-less workspace; the removed
+  word itself, which had run the full protocol before the edit, now got a
+  one-line acknowledgment and no Skill call in 2 of 2 runs; the unrelated-prompt
+  arm stayed quiet. Selection matches the user's words against the
+  description's words — if wrap-up words in other languages must fire a skill,
+  the literal words have to be in the description. Two runs; re-run before
+  leaning harder.
 
 ## Two CLIs, one manifest
 
