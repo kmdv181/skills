@@ -12,7 +12,7 @@
       "source": "./plugins/always-english-artifacts",
       "description": "Talk to the agent in any language; keep everything it writes down — code, comments, Markdown, commit messages, PR bodies, issue text — in English. Injected at session start, so it holds on every turn.",
       "category": "productivity",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "kmdv",
         "email": "i@kmdv.dev"
