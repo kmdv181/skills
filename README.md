@@ -85,19 +85,22 @@ hook. It buys nothing and would add a second `version` field to keep in step.
 
 ## The repo's own instructions reach the two CLIs differently
 
-Working rules live in `AGENTS.md`, accumulated facts in `MEMORY.md`, one copy
-each. How they arrive is not symmetric, and both halves are measured:
+Working rules live in `AGENTS.md`, one copy. Accumulated facts are not in the
+repo at all: they live in the beads memory store (`bd memories`, keys prefixed
+`facts/`), machine-local, because this is a public repository and its working
+notes are not part of the product. What ships is recorded in `CHANGELOG.md`.
 
-- **Claude Code** reads `CLAUDE.md` only, which imports both by name. Imports
-  must stay first-level — a nested one silently resolved to nothing here.
+- **Claude Code** reads `CLAUDE.md` only, which imports `AGENTS.md` by name.
+  Imports must stay first-level — a nested one silently resolved to nothing
+  here.
 - **Codex** reads the working directory's `AGENTS.md` into context by itself,
-  and resolves no imports at all. So `MEMORY.md` is *not* in its context.
+  and resolves no imports at all.
 
-What bridges that second gap is a sentence: `AGENTS.md` opens by naming
-`MEMORY.md` and saying to read it, and with it there Codex opened that file
-first thing in 3 of 3 runs, against 0 of 2 with the sentence deleted. Keep it.
-`MEMORY.md` carries the probes and their negative controls under *Two CLIs, one
-manifest*.
+`AGENTS.md` opens by pointing at the facts store and saying to read it. That
+pointer sentence is measured as load-bearing: when the facts lived in a checked-
+in `MEMORY.md`, Codex opened it first thing in 3 of 3 runs with the sentence
+present, 0 of 2 with it deleted. The probes and their negative controls are kept
+under the `facts/two-clis-one-manifest` memory key.
 
 ## Adding a plugin
 

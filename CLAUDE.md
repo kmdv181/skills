@@ -1,23 +1,25 @@
 @AGENTS.md
-@MEMORY.md
 
 # Claude Code
 
-The working rules are in `AGENTS.md` and the accumulated facts are in
-`MEMORY.md`, both imported above. They are not duplicated here on purpose: this
-repository has already shipped defects caused by knowledge copied into a second
-place and left to rot. One copy, two harnesses.
+The working rules are in `AGENTS.md`, imported above. The accumulated facts —
+the knowledge this repository already paid for — live in the beads memory store
+(`bd memories`, keys prefixed `facts/`), not in a checked-in file: this is a
+public repository, and its working notes are not part of the product. Neither
+is duplicated here on purpose: this repository has already shipped defects
+caused by knowledge copied into a second place and left to rot. One copy, two
+harnesses.
 
-Both imports are first-level and each sits alone on its line. A nested import —
-`AGENTS.md` pulling in `MEMORY.md` — was tried first and silently failed to
-resolve, so the facts were absent while everything still looked correct. Keep
-new imports at the top level, on their own line, with no trailing punctuation.
+The import above is first-level and sits alone on its line. A nested import was
+tried here once and silently failed to resolve, so the imported facts were
+absent while everything still looked correct. Keep any new import at the top
+level, on its own line, with no trailing punctuation.
 
 Everything below is specific to Claude Code and belongs nowhere else.
 
 - Confirm what actually loaded with `/context`, under **Memory files**. If
-  `AGENTS.md` and `MEMORY.md` are not listed, the imports above did not resolve
-  and you are working without them — say so rather than guessing at the rules.
+  `AGENTS.md` is not listed, the import above did not resolve and you are
+  working without the rules — say so rather than guessing at them.
 - `claude plugin validate <dir> --strict` reads a plugin's skill and command
   frontmatter only when pointed at that plugin's directory. Run it at the repo
   root *and* per plugin.

@@ -198,8 +198,9 @@ rm -rf "$(dirname "$LAB")"
 ## Record the run
 
 A hand-run test nobody wrote down is a rumour. When you finish, note in the
-commit message or in this repo's `MEMORY.md`: the date, `bd version`, the
-harness, and every box that did **not** get ticked.
+commit message or in beads memory (`bd remember`, on the `facts/` key the
+finding belongs to): the date, `bd version`, the harness, and every box that
+did **not** get ticked.
 
 An unticked box is not a failure of the run — it is the finding, and it is the
 whole return on doing this by hand.

@@ -5,8 +5,12 @@ them. Claude Code reads them through `CLAUDE.md`, which imports this file; Codex
 and anything else that honours the `AGENTS.md` convention reads it directly.
 
 Facts already paid for — Ghostty's CLI, this marketplace's quirks, defects that
-have shipped and why — live in `MEMORY.md`. Read it before assuming anything
-about either; it exists so you don't re-derive what someone already bled for.
+have shipped and why — live in the beads memory store, under keys prefixed
+`facts/`. Run `bd memories facts` and read what comes back before assuming
+anything about either; it exists so you don't re-derive what someone already
+bled for. The store is machine-local: if `bd ready` fails or the keys are
+missing here, say so rather than guessing — `git log` still carries every
+lesson's origin, and `CHANGELOG.md` the shipped history.
 
 ## Find your feedback loop before you build
 
@@ -112,7 +116,8 @@ commit — so pushing to `main` without a version bump reaches nobody. It report
 So for any change that should reach a user:
 
 1. Bump the patch version in **both** `plugins/<name>/.claude-plugin/plugin.json`
-   and that plugin's entry in `.claude-plugin/marketplace.json`.
+   and that plugin's entry in `.claude-plugin/marketplace.json`, and add a line
+   for the version under the right date in `CHANGELOG.md`.
 2. `claude plugin tag ./plugins/<name>` — validates that the two agree and creates
    the release tag. `claude plugin validate --strict` does **not** catch this
    mismatch, despite the docs saying it warns.
@@ -129,7 +134,8 @@ these steps are facts about this repository, not about a particular harness.
 
 ## When you learn something the hard way
 
-Add it to `MEMORY.md`, in the section it belongs to, as one entry that names the
-evidence — the command, the source file, the version. A lesson nobody can check
-later is a rumour. If the lesson is a rule rather than a fact, it belongs here in
-`AGENTS.md` instead.
+Store it in beads memory with `bd remember`, updating the `facts/` key it
+belongs to, as one entry that names the evidence — the command, the source file,
+the version. A lesson nobody can check later is a rumour. If the lesson is a
+rule rather than a fact, it belongs here in `AGENTS.md` instead; if it changed
+what the marketplace ships, it also gets a line in `CHANGELOG.md`.
