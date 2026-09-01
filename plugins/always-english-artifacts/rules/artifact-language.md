@@ -14,6 +14,8 @@ A draft artifact quoted in chat stays English. When showing a commit message, a
 doc paragraph, or a code block, the prose around it follows the conversation
 language and the artifact itself is not translated to match.
 
+Quoted evidence is not exempt. Command output, probe results, error messages, or log lines in another language become prose the moment they land in a commit message, a PR body, or a memory entry: a reader who does not speak the language can no longer check the evidence, which is what the evidence is for. Translate the quote, or state the finding in English instead of quoting it.
+
 Reason in whatever language comes naturally. Do not insert an explicit
 translate-to-English step before thinking: forcing a fixed reasoning language
 measurably hurts accuracy, and the translation step introduces errors that
