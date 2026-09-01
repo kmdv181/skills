@@ -2,7 +2,7 @@
 
 What this marketplace has shipped, newest first. Versions refer to the plugin manifests; dates come from git history, and the commit messages carry the full reasoning and evidence behind every line here.
 
-## Unreleased
+## 2026-09-01
 
 - `nightcap` 0.1.0 — new plugin: a memory checkpoint an agent calls on itself, distilling the session into persistent beads memory and sealing one key with the state of play, the next move, and the agent's last proposal verbatim.
 - `always-english-artifacts` 0.2.1 — the artifact-language rule now states that quoted evidence is not exempt: non-English command output or probe results landing in a commit message, PR body, or memory entry must be translated or stated as a finding.
