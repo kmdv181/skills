@@ -38,7 +38,7 @@ codex plugin marketplace upgrade       # Codex
 
 Codex needs no Codex-specific manifest: it discovers plugins through `.claude-plugin/marketplace.json` and loads their components from the default paths.
 
-The `yes`es in the Codex column were not earned the same way, and only one of them was measured today. `always-english-artifacts` is its owner's to vouch for; what follows is about `ghostty-config` alone. `nightcap` says `untested` because it is: it has no reason not to work there — it ships prose and no hooks — but nobody has run it under Codex, and this column records runs, not expectations.
+These columns record runs, not expectations, and the `yes`es were not all earned the same way. `always-english-artifacts` is its owner's to vouch for; `ghostty-config`'s Codex run (2026-08-09) is described below. `nightcap` and `always-soft-wrap` say `untested` for Codex because nobody has run them there — neither has a reason not to work, but reasons don't earn a `yes`. If you try `always-soft-wrap` under Codex, note that it ships a hook, so it contributes nothing until you approve that hook once per machine (see *Codex hook trust* below); `nightcap` ships prose only, with no hook to trust.
 
 `ghostty-config` now says `yes` for Codex because the whole cycle was run there, not because the install succeeded. Against a fixture config under a redirected `HOME`, on codex-cli 0.147.0 and Ghostty 1.3.1: Codex loaded the `edit` skill, ran the plugin's own `ghostty-env.sh`, checked the key against the installed binary, offered a diff and waited, wrote on confirmation with a timestamped backup — then the `undo` skill listed that backup, showed its diff, waited again, and restored a file that `+validate-config` accepts.
 
@@ -83,7 +83,7 @@ Working rules live in `AGENTS.md`, one copy. Accumulated facts are not in the re
 |---|---|
 | Manifests, catalog | `claude plugin validate` — schema only |
 | Anything that ships | Install it, then `claude plugin details <name>@kmdv181`. The component inventory is the only thing that catches duplicate component names. |
-| Shell scripts | Fixtures and a fake binary; assert exit codes and file contents. `ghostty-config` stubs `ghostty` and `uname`; `always-english-artifacts` runs `scripts/test.sh`. |
+| Shell scripts | Fixtures and a fake binary; assert exit codes and file contents. `ghostty-config` stubs `ghostty` and `uname`; `always-english-artifacts` and `always-soft-wrap` run `scripts/test.sh`. |
 | Anything that changes agent behaviour | Run the same prompt with the plugin enabled and disabled. A probe that passes in both arms proves nothing — pick one where the baseline plausibly fails. |
 
 ## Codex hook trust
