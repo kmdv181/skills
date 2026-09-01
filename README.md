@@ -87,8 +87,9 @@ hook. It buys nothing and would add a second `version` field to keep in step.
 
 Working rules live in `AGENTS.md`, one copy. Accumulated facts are not in the
 repo at all: they live in the beads memory store (`bd memories`, keys prefixed
-`facts/`), machine-local, because this is a public repository and its working
-notes are not part of the product. What ships is recorded in `CHANGELOG.md`.
+`facts/`), synced between the maintainer's machines over a private remote,
+because this is a public repository and its working notes are not part of the
+product. What ships is recorded in `CHANGELOG.md`.
 
 - **Claude Code** reads `CLAUDE.md` only, which imports `AGENTS.md` by name.
   Imports must stay first-level — a nested one silently resolved to nothing

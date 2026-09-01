@@ -8,9 +8,11 @@ Facts already paid for — Ghostty's CLI, this marketplace's quirks, defects tha
 have shipped and why — live in the beads memory store, under keys prefixed
 `facts/`. Run `bd memories facts` and read what comes back before assuming
 anything about either; it exists so you don't re-derive what someone already
-bled for. The store is machine-local: if `bd ready` fails or the keys are
-missing here, say so rather than guessing — `git log` still carries every
-lesson's origin, and `CHANGELOG.md` the shipped history.
+bled for. The store lives outside the repo, per machine, synced over a private
+Dolt remote (`bd dolt pull` / `push`; the `facts/beads-sync` memory carries the
+topology). If `bd ready` fails or the keys are missing here, say so rather than
+guessing — `git log` still carries every lesson's origin, and `CHANGELOG.md`
+the shipped history.
 
 ## Find your feedback loop before you build
 
