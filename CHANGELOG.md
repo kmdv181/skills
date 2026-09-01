@@ -2,7 +2,7 @@
 
 What this marketplace has shipped, newest first. Versions refer to the plugin manifests; dates come from git history, and the commit messages carry the full reasoning and evidence behind every line here.
 
-## Unreleased
+## 2026-09-01
 
 - `always-soft-wrap` 0.1.0 — new plugin: a session-wide rule against hard line breaks, injected at session start — a paragraph, and any sentence inside one, is a single line in the file, soft-wrapped by the reader's editor; code blocks and structure are untouched. Born from PR #1 review, which caught the same wrapped paragraphs three times by hand.
 - `nightcap` 0.1.0 — new plugin: a memory checkpoint an agent calls on itself, distilling the session into persistent beads memory and sealing one key with the state of play, the next move, and the agent's last proposal verbatim.
