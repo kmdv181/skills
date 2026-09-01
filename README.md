@@ -32,6 +32,7 @@ codex plugin marketplace upgrade       # Codex
 | Plugin | Claude Code | Codex | What it is |
 |---|---|---|---|
 | [`always-english-artifacts`](plugins/always-english-artifacts) | yes | yes | Talk to the agent in any language; keep code, comments, Markdown, commit messages and issue text in English. |
+| [`always-soft-wrap`](plugins/always-soft-wrap) | yes | untested | Never hard-wrap a paragraph: prose is one line per paragraph, soft-wrapped by the reader's editor rather than broken by the file. |
 | [`ghostty-config`](plugins/ghostty-config) | yes | yes | Conversational editing of the Ghostty terminal config, with validation before write and rollback. |
 | [`nightcap`](plugins/nightcap) | yes | untested | A memory checkpoint an agent calls on itself: decide what the session is worth remembering, distil it into beads memory, seal the next move. |
 
