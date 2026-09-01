@@ -65,4 +65,4 @@
 # - linear.api_key  → use LINEAR_API_KEY env var instead
 # - github.token    → use GITHUB_TOKEN env var instead
 
-sync.remote: "git+https://github.com/kmdv181/skills.git"
+sync.remote: "http://ubuntu-gnu-linux-24-04-3.taile09616.ts.net:50051/skills"
