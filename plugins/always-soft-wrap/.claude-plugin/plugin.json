@@ -1,0 +1,18 @@
+{
+  "name": "always-soft-wrap",
+  "version": "0.1.0",
+  "description": "Never hard-wrap a paragraph: prose is one line per paragraph, soft-wrapped by the reader's editor rather than broken by the file. Injected at session start, so every file the agent writes follows it from the first turn.",
+  "author": {
+    "name": "Kirill Medvedev",
+    "email": "km@kmdv.dev"
+  },
+  "license": "MIT",
+  "keywords": [
+    "formatting",
+    "markdown",
+    "soft-wrap",
+    "prose",
+    "conventions",
+    "hooks"
+  ]
+}

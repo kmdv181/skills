@@ -30,6 +30,17 @@
       }
     },
     {
+      "name": "always-soft-wrap",
+      "source": "./plugins/always-soft-wrap",
+      "description": "Never hard-wrap a paragraph: prose is one line per paragraph, soft-wrapped by the reader's editor rather than broken by the file. Injected at session start, so every file the agent writes follows it from the first turn.",
+      "category": "productivity",
+      "version": "0.1.0",
+      "author": {
+        "name": "Kirill Medvedev",
+        "email": "km@kmdv.dev"
+      }
+    },
+    {
       "name": "nightcap",
       "source": "./plugins/nightcap",
       "description": "A memory checkpoint an agent can call on itself. It decides what this session is worth remembering, distils that into persistent beads memory, and seals one key with the state of play and the next move — before compaction or the end of the day takes it.",
