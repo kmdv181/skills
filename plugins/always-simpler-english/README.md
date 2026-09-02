@@ -31,9 +31,23 @@ Sentence length separates A-level readers from B-level readers, but it barely se
 
 ## Codex
 
-The mechanism is the one `always-english-artifacts` runs under Codex unmodified: discovery through this repo's `.claude-plugin/marketplace.json`, the same `hooks/hooks.json` path, the same `hookSpecificOutput.additionalContext` payload. This plugin itself has not been run under Codex yet. The marketplace README's harness table records runs, not expectations.
+The mechanism is the one `always-english-artifacts` runs under Codex unmodified. Codex discovers the plugin through this repo's `.claude-plugin/marketplace.json`, reads the same `hooks/hooks.json`, accepts the same `hookSpecificOutput.additionalContext` payload, and supplies `CLAUDE_PLUGIN_ROOT` to the hook as a compatibility variable. No Codex-specific manifest is needed.
 
-If you try it there, remember that installing does not trust the hook. Codex skips plugin-bundled hooks, silently, until you approve the hook definition once per machine. Start Codex interactively once after installing.
+```
+codex plugin marketplace add kmdv181/skills
+codex plugin add always-simpler-english@kmdv181
+```
+
+**Then trust the hook, once per machine.** Installing does not trust it. Codex skips plugin-bundled hooks, silently, until you approve the hook definition, and until then the plugin reports as installed while injecting nothing. Start Codex interactively once after installing and approve. To confirm without the interactive step:
+
+```
+printf 'One word, YES or NO: is a block titled "Simpler English" in your context?' \
+  | codex exec --dangerously-bypass-hook-trust -
+```
+
+The trust hash covers `hooks/hooks.json`, so editing that file needs re-approval. Editing the rule text does not, because the payload is a separate file.
+
+This plugin itself has not been run under Codex yet. The commands above are the ones `always-english-artifacts` was verified with, and the marketplace README's harness table records runs, not expectations.
 
 ## Editing the rule
 
@@ -46,7 +60,7 @@ scripts/test.sh      # verify; run before committing
 
 Commit both files. `scripts/test.sh` fails if they have drifted. It also fails if the rule text, or this README, breaks the rule's own limits. The limits it checks are no sentence over 30 words, a mean under 20, and no em dash, semicolon or Latin abbreviation. The rule cannot ship in violation of itself.
 
-The payload is pre-encoded rather than built at session start so the hook has no runtime dependency beyond `cat`. A hook that needs `jq` fails silently on a machine without it, and a silently missing rule is worse than no plugin.
+So the rule exists twice on disk, once as Markdown and once inside the JSON payload. That is deliberate. The Markdown is for people: it diffs cleanly, reads in a review, and is what you edit. The JSON is what the CLI consumes, pre-encoded so the hook has no runtime dependency beyond `cat` and no string escaping happens at session start. A hook that needs `jq` fails silently on a machine without it, and a silently missing rule is worse than no plugin. The drift check in `scripts/test.sh` is what keeps the two copies honest.
 
 ## Verifying
 
