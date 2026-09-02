@@ -42,7 +42,7 @@ no_banned() {
   fi
 }
 
-echo "write-simpler-english"
+echo "always-simpler-english"
 
 # 1. The payload is the shape both Claude Code and Codex read.
 if command -v jq >/dev/null 2>&1; then

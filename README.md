@@ -35,11 +35,11 @@ codex plugin marketplace upgrade       # Codex
 | [`always-soft-wrap`](plugins/always-soft-wrap) | yes | untested | Never hard-wrap a paragraph: prose is one line per paragraph, soft-wrapped by the reader's editor rather than broken by the file. |
 | [`ghostty-config`](plugins/ghostty-config) | yes | yes | Conversational editing of the Ghostty terminal config, with validation before write and rollback. |
 | [`nightcap`](plugins/nightcap) | yes | untested | A memory checkpoint an agent calls on itself: decide what the session is worth remembering, distil it into beads memory, seal the next move. |
-| [`write-simpler-english`](plugins/write-simpler-english) | yes | untested | Every piece of English prose the agent writes for a person is easy to read at CEFR B2 level or a little above: short sentences, common words, no idioms, exact technical terms. |
+| [`always-simpler-english`](plugins/always-simpler-english) | yes | untested | Every piece of English prose the agent writes for a person is easy to read at CEFR B2 level or a little above: short sentences, common words, no idioms, exact technical terms. |
 
 Codex needs no Codex-specific manifest: it discovers plugins through `.claude-plugin/marketplace.json` and loads their components from the default paths.
 
-These columns record runs, not expectations, and the `yes`es were not all earned the same way. `always-english-artifacts` is its owner's to vouch for; `ghostty-config`'s Codex run (2026-08-09) is described below. `nightcap`, `always-soft-wrap` and `write-simpler-english` say `untested` for Codex because nobody has run them there. None has a reason not to work, but reasons don't earn a `yes`. If you try `always-soft-wrap` or `write-simpler-english` under Codex, note that each ships a hook. A hook contributes nothing until you approve it once per machine (see *Codex hook trust* below). `nightcap` ships prose only, with no hook to trust.
+These columns record runs, not expectations, and the `yes`es were not all earned the same way. `always-english-artifacts` is its owner's to vouch for; `ghostty-config`'s Codex run (2026-08-09) is described below. `nightcap`, `always-soft-wrap` and `always-simpler-english` say `untested` for Codex because nobody has run them there. None has a reason not to work, but reasons don't earn a `yes`. If you try `always-soft-wrap` or `always-simpler-english` under Codex, note that each ships a hook. A hook contributes nothing until you approve it once per machine (see *Codex hook trust* below). `nightcap` ships prose only, with no hook to trust.
 
 `ghostty-config` now says `yes` for Codex because the whole cycle was run there, not because the install succeeded. Against a fixture config under a redirected `HOME`, on codex-cli 0.147.0 and Ghostty 1.3.1: Codex loaded the `edit` skill, ran the plugin's own `ghostty-env.sh`, checked the key against the installed binary, offered a diff and waited, wrote on confirmation with a timestamped backup — then the `undo` skill listed that backup, showed its diff, waited again, and restored a file that `+validate-config` accepts.
 
@@ -84,7 +84,7 @@ Working rules live in `AGENTS.md`, one copy. Accumulated facts are not in the re
 |---|---|
 | Manifests, catalog | `claude plugin validate` — schema only |
 | Anything that ships | Install it, then `claude plugin details <name>@kmdv181`. The component inventory is the only thing that catches duplicate component names. |
-| Shell scripts | Fixtures and a fake binary; assert exit codes and file contents. `ghostty-config` stubs `ghostty` and `uname`; `always-english-artifacts`, `always-soft-wrap` and `write-simpler-english` run `scripts/test.sh`, and `write-simpler-english` also scores model output with `tests/probe.sh`. |
+| Shell scripts | Fixtures and a fake binary; assert exit codes and file contents. `ghostty-config` stubs `ghostty` and `uname`; `always-english-artifacts`, `always-soft-wrap` and `always-simpler-english` run `scripts/test.sh`, and `always-simpler-english` also scores model output with `tests/probe.sh`. |
 | Anything that changes agent behaviour | Run the same prompt with the plugin enabled and disabled. A probe that passes in both arms proves nothing — pick one where the baseline plausibly fails. |
 
 ## Codex hook trust

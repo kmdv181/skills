@@ -4,7 +4,7 @@ What this marketplace has shipped, newest first. Versions refer to the plugin ma
 
 ## 2026-09-02
 
-- `write-simpler-english` 0.1.0 — new plugin: a session-wide reading-level rule, injected at session start. Every piece of English prose written for a person is readable at CEFR B2 or a little above: sentences under 30 words, common words over C1 words, no idioms, em dashes or semicolons, and technical terms kept exact. Text only an agent will read is exempt. Ships a prose scorer, a self-compliance test, and an enabled-versus-disabled probe that measures the rule against the model.
+- `always-simpler-english` 0.1.0 — new plugin: a session-wide reading-level rule, injected at session start. Every piece of English prose written for a person is readable at CEFR B2 or a little above: sentences under 30 words, common words over C1 words, no idioms, em dashes or semicolons, and technical terms kept exact. Text only an agent will read is exempt. Ships a prose scorer, a self-compliance test, and an enabled-versus-disabled probe that measures the rule against the model.
 
 ## 2026-09-01
 

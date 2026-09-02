@@ -15,7 +15,7 @@
 #     when the plugin is not installed from the scratch marketplace
 #
 # Optional:
-#   PROBE_PLUGIN   plugin id to toggle (default write-simpler-english@kmdv181-local)
+#   PROBE_PLUGIN   plugin id to toggle (default always-simpler-english@kmdv181-local)
 #   PROBE_SET      space-separated prompt ids to run (default: A1 A2 A3 C1 C2 C3;
 #                  A4 is the reserve prompt for an uninformative baseline;
 #                  P always runs first in each arm)
@@ -29,7 +29,7 @@ LC_ALL=C; export LC_ALL
 
 root=$(CDPATH='' cd -- "$(dirname -- "$0")/.." && pwd)
 measure="$root/scripts/measure.sh"
-plugin=${PROBE_PLUGIN:-write-simpler-english@kmdv181-local}
+plugin=${PROBE_PLUGIN:-always-simpler-english@kmdv181-local}
 set_ids=${PROBE_SET:-"A1 A2 A3 C1 C2 C3"}
 
 [ -n "${PROBE_BUDGET_TOKENS:-}" ] || {

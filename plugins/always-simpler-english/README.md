@@ -1,10 +1,10 @@
-# write-simpler-english
+# always-simpler-english
 
 Every piece of English prose the agent writes for a person is easy to read at CEFR B2 level or a little above.
 
 ```
 /plugin marketplace add kmdv181/skills
-/plugin install write-simpler-english@kmdv181
+/plugin install always-simpler-english@kmdv181
 ```
 
 ## What it does
