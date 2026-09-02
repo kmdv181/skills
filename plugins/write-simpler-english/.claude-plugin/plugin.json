@@ -1,0 +1,19 @@
+{
+  "name": "write-simpler-english",
+  "version": "0.1.0",
+  "description": "Every piece of English prose the agent writes for a human reader is easy to read at CEFR B2 level or a little above: sentences under 30 words, common words, no idioms, exact technical terms. Text only an agent will read is exempt. Injected at session start, so it holds on every turn. It sets the reading level, not the language.",
+  "author": {
+    "name": "Kirill Medvedev",
+    "email": "km@kmdv.dev"
+  },
+  "license": "MIT",
+  "keywords": [
+    "english",
+    "readability",
+    "plain-language",
+    "b2",
+    "prose",
+    "conventions",
+    "hooks"
+  ]
+}
