@@ -2,6 +2,10 @@
 
 What this marketplace has shipped, newest first. Versions refer to the plugin manifests; dates come from git history, and the commit messages carry the full reasoning and evidence behind every line here.
 
+## 2026-09-02
+
+- `always-simpler-english` 0.1.0 — new plugin: a session-wide reading-level rule, injected at session start. Every piece of English prose written for a person is readable at CEFR B2 or a little above: sentences under 30 words, common words over C1 words, no idioms, em dashes or semicolons, and technical terms kept exact. Text only an agent will read is exempt. Ships a prose scorer, a self-compliance test, and an enabled-versus-disabled probe that measures the rule against the model.
+
 ## 2026-09-01
 
 - `always-soft-wrap` 0.1.0 — new plugin: a session-wide rule against hard line breaks, injected at session start — a paragraph, and any sentence inside one, is a single line in the file, soft-wrapped by the reader's editor; code blocks and structure are untouched. Born from PR #1 review, which caught the same wrapped paragraphs three times by hand.
