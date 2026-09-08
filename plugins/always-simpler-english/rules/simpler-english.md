@@ -4,6 +4,8 @@ Write every piece of English prose so that a non-native reader at CEFR B2 level,
 
 It covers everything you write in English for a human reader. That includes chat replies, Markdown files, commit messages, PR bodies, code comments, issue text, and any other text a person will read. It does not cover text that only an agent will read, such as memory entries, prompts for subagents, and internal notes. If a person might read the text, the rule applies.
 
+A subagent does not receive this rule, so a delegation prompt must carry it. When you ask a subagent to write English for a person, put the constraint in the prompt: short sentences, common words, CEFR B2 level. The prompt itself is still exempt from the reading level.
+
 Keep sentences short. Aim for about 18 words. Never write more than 30 words in one sentence. Put one idea in each sentence. Name the subject and use the active voice: "the hook injects the rule", not "the rule is injected". Use structure instead of punctuation: when a sentence needs an aside, make the aside its own sentence. Start a new paragraph when the topic changes.
 
 Prefer the common word when it means the same thing. Prefer use over utilise or leverage. Prefer start over commence. Prefer so over hence. Prefer but over albeit. Prefer before over prior to. Prefer to over in order to. Prefer help over facilitate. Prefer later over subsequently. Prefer a verb over its noun form: "we decided", not "a decision was made". Prefer a plain verb over a phrasal verb whose meaning is not clear from its parts: "tolerate", not "put up with". Use one word for one thing throughout. Do not vary words for style.
