@@ -18,12 +18,21 @@ command -v bd && bd ready
 
 `bd` on `PATH` and a beads workspace in the repository. Without both, the skill says so and stops — it will not write a Markdown file instead. A substitute nobody reads is worse than an honest refusal, and it lets an agent report success it did not achieve.
 
-Install:
+Claude Code:
 
 ```sh
 /plugin marketplace add kmdv181/skills
 /plugin install nightcap@kmdv181
 ```
+
+Codex:
+
+```sh
+codex plugin marketplace add kmdv181/skills
+codex plugin add nightcap@kmdv181
+```
+
+Start a new session after installation.
 
 ## What it does
 
@@ -32,7 +41,7 @@ Install:
 | The cut | Keeps the hearts — settled decisions, your corrections, the reason an approach that looks right is wrong here — as `bd remember` keys. Discards chatter and dead ends deliberately. |
 | Seal | Overwrites one key, `<name>/nightcap`: the date, the state of play, and the agent's last proposal **quoted verbatim**. |
 | In flight | *Only if there is any.* Claimed issues get closed with a reason, or a note with the exact stopping point. Not a checklist item — a session that touches no issue is fine. |
-| Sync | `bd dolt push`, last, after everything else is written. Git stays report-only. |
+| Sync | Run `bd dolt push` last when the session or repository already grants sync authority; otherwise report the exact command. Git stays report-only. |
 
 ## Why the last proposal is quoted, not summarised
 

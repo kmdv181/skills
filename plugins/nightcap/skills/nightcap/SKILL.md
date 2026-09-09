@@ -102,13 +102,15 @@ On open work, record the exact stopping point and the literal next command. "Con
 
 **Never `bd update --notes` for this.** `--notes` *replaces* the notes field, so it silently deletes the stopping point an earlier session left there — the exact information the next one came for, and nothing in the transcript will show it happened. `bd note` appends, which is what a handoff needs.
 
-## Last, always — sync
+## Last — sync when authorized
+
+When the current session's instructions or the repository profile already grant authority to sync beads, run this after everything above:
 
 ```sh
 bd dolt push
 ```
 
-Memory that doesn't survive the machine isn't memory. Do this after everything above, or what you just wrote stays here. A failure doesn't block sleep, but the exact command and its error go into your report.
+When that authority is absent, leave the memory local and report the exact command for the user to run or approve: `bd dolt push`. When an authorized push fails, include the command and its error in your report.
 
 **Git stays report-only.** Run `git status`, propose the commands — no commits and no pushes without the user asking for them in this session.
 

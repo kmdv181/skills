@@ -5,6 +5,7 @@ What this marketplace has shipped, newest first. Versions refer to the plugin ma
 ## 2026-09-09
 
 - `ghostty-config` 0.1.12 — give edit and undo distinct invocation branches, use Codex-compatible skill frontmatter, soft-wrap both skill files, and document Codex alongside Claude Code.
+- `nightcap` 0.1.1 — require existing sync authority before `bd dolt push` and document Codex installation.
 
 ## 2026-09-08
 
