@@ -2,6 +2,10 @@
 
 What this marketplace has shipped, newest first. Versions refer to the plugin manifests; dates come from git history, and the commit messages carry the full reasoning and evidence behind every line here.
 
+## 2026-09-09
+
+- `ghostty-config` 0.1.12 — give edit and undo distinct invocation branches, use Codex-compatible skill frontmatter, soft-wrap both skill files, and document Codex alongside Claude Code.
+
 ## 2026-09-08
 
 - `always-soft-wrap` 0.1.1 — a subagent receives no session-start context, so the rule now tells the parent to put the constraint in the delegation prompt: one line per paragraph.

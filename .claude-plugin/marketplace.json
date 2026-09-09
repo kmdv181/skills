@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "kmdv181",
-  "description": "kmdv181 — Claude Code plugins and skills by kmdv.",
+  "description": "kmdv181 — plugins and skills for Claude Code and Codex by kmdv.",
   "owner": {
     "name": "kmdv",
     "email": "i@kmdv.dev"
@@ -21,9 +21,9 @@
     {
       "name": "ghostty-config",
       "source": "./plugins/ghostty-config",
-      "description": "Edit your Ghostty terminal config by talking to Claude — validates every change before it touches the real file, and keeps rollbackable backups.",
+      "description": "Edit your Ghostty terminal config with Claude Code or Codex. It validates every change before touching the real file and keeps rollbackable backups.",
       "category": "productivity",
-      "version": "0.1.11",
+      "version": "0.1.12",
       "author": {
         "name": "kmdv",
         "email": "i@kmdv.dev"

@@ -1,29 +1,40 @@
 # ghostty-config
 
-A Claude Code plugin for editing the [Ghostty](https://ghostty.org) terminal
-configuration by describing what you want.
+A Claude Code and Codex plugin for editing the [Ghostty](https://ghostty.org) terminal configuration by describing what you want.
 
-```
+Claude Code:
+
+```text
 /ghostty-config:edit switch to a dark theme, bump the font to 15, and give me tmux-style splits
 ```
 
-Claude finds your config the same way Ghostty does, checks every key against your
-installed binary, validates the change *before* touching the real file, shows you
-the diff, and applies it only when you say so.
+Codex:
+
+```text
+$ghostty-config:edit switch to a dark theme, bump the font to 15, and give me tmux-style splits
+```
+
+The agent finds your config the same way Ghostty does, checks every key against your installed binary, validates the change *before* touching the real file, shows you the diff, and applies it only when you say so.
 
 ## Install it where Ghostty runs
 
-The plugin shells out to the `ghostty` binary and edits a file on the local disk,
-so it has to run on the machine Ghostty is installed on — not on a remote host
-you're SSH'd into from a Ghostty window.
+The plugin shells out to the `ghostty` binary and edits a file on the local disk, so it has to run on the machine Ghostty is installed on, rather than a remote host reached from a Ghostty window.
+
+Claude Code:
 
 ```sh
 /plugin marketplace add kmdv181/skills
 /plugin install ghostty-config@kmdv181
 ```
 
-Set `GHOSTTY_BIN` if your install isn't on `PATH` and isn't at
-`/Applications/Ghostty.app/Contents/MacOS/ghostty`.
+Codex:
+
+```sh
+codex plugin marketplace add kmdv181/skills
+codex plugin add ghostty-config@kmdv181
+```
+
+Start a new session after installation. Set `GHOSTTY_BIN` if your install is not on `PATH` and is not at `/Applications/Ghostty.app/Contents/MacOS/ghostty`.
 
 ## Skills
 
