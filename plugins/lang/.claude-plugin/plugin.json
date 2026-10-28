@@ -1,6 +1,6 @@
 {
   "name": "lang",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Three language rules, injected at session start so they hold on every turn: keep every artifact in English, write English prose at CEFR B2 level, and never hard-wrap a paragraph.",
   "author": {
     "name": "Kirill Medvedev",

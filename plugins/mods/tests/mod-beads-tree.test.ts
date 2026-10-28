@@ -111,7 +111,7 @@ test('the pane draws the tree from bd list', async ($, on) => {
 
   for (const surface of ['terminal', 'desktop'] as const) {
     const ui = await $.ui.mount({
-      plugin: 'mod',
+      plugin: 'mods',
       surface,
       component: 'Pane',
       requestId: 'mod-beads-tree',
@@ -147,7 +147,7 @@ test('the pane shows why bd failed', async ($, on) => {
   await $.session.start({ cwd: '/repo', surface: 'terminal', isInteractive: true })
 
   const ui = await $.ui.mount({
-    plugin: 'mod',
+    plugin: 'mods',
     surface: 'terminal',
     component: 'Pane',
     requestId: 'mod-beads-tree',

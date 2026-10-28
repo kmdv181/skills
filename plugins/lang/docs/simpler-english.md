@@ -30,7 +30,7 @@ The mechanism is the one the artifact-language rule runs under Codex unmodified.
 
 ```
 codex plugin marketplace add kmdv181/skills
-codex plugin add lang@kmdv181
+codex plugin add lang@kmdv181-skills
 ```
 
 **Then trust the hook, once per machine.** Installing does not trust it. Codex skips plugin-bundled hooks, silently, until you approve the hook definition, and until then the plugin reports as installed while injecting nothing. Start Codex interactively once after installing and approve. To confirm without the interactive step:

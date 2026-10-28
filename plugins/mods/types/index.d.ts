@@ -13,6 +13,6 @@ export type Snapshot = { issues: BeadsIssue[]; error: string | null }
 
 declare module 'claude-code' {
   interface PluginState {
-    mod: { 'mod-beads-tree-snapshot': Snapshot }
+    mods: { 'mod-beads-tree-snapshot': Snapshot }
   }
 }

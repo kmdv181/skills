@@ -1,19 +1,19 @@
-# kmdv181 — a marketplace for Claude Code and Codex
+# kmdv181-skills — a marketplace for Claude Code and Codex
 
-A personal marketplace: `kmdv181`. Add it once, then install anything from it.
+A personal marketplace: `kmdv181-skills`. Add it once, then install anything from it.
 
 Claude Code:
 
 ```
 /plugin marketplace add kmdv181/skills
-/plugin install lang@kmdv181
+/plugin install lang@kmdv181-skills
 ```
 
 Codex:
 
 ```
 codex plugin marketplace add kmdv181/skills
-codex plugin add lang@kmdv181
+codex plugin add lang@kmdv181-skills
 ```
 
 Both CLIs read the same `.claude-plugin/marketplace.json`. Codex needs no marketplace file of its own — the name is a historical accident, not a scope.
@@ -21,11 +21,11 @@ Both CLIs read the same `.claude-plugin/marketplace.json`. Codex needs no market
 Refresh after pushing changes here:
 
 ```
-/plugin marketplace update kmdv181     # Claude Code
+/plugin marketplace update kmdv181-skills     # Claude Code
 codex plugin marketplace upgrade       # Codex
 ```
 
-`kmdv181` appears twice above and means two different things. In `kmdv181/skills` it's the GitHub owner, and that whole path follows the repository — rename the repo and this line needs updating, here and in each plugin's README. In `@kmdv181` it's the marketplace name, which comes from `.claude-plugin/marketplace.json` and is independent of both the owner and the repo name. They match today because that's what reads well, not because anything requires it.
+`kmdv181/skills` is the GitHub path: owner and repository. If the repo is renamed, update this line here and in each plugin's README. `kmdv181-skills` in `@kmdv181-skills` is the marketplace name. It comes from `.claude-plugin/marketplace.json` and does not depend on the owner or the repo name.
 
 ## Plugins
 
@@ -33,7 +33,7 @@ codex plugin marketplace upgrade       # Codex
 |---|---|---|---|
 | [`lang`](plugins/lang) | yes | untested | Three language rules in one plugin: keep every artifact in English, write English prose at CEFR B2 level, and never hard-wrap a paragraph. |
 | [`ghostty-config`](plugins/ghostty-config) | yes | yes | Conversational editing of the Ghostty terminal config, with validation before write and rollback. |
-| [`mod`](plugins/mod) | yes | no | Claude Code mods. `mod-beads-tree` shows the open beads (`bd`) issues as a tree in a pane, and `/mod-beads-tree` toggles it. |
+| [`mods`](plugins/mods) | yes | no | Claude Code mods. `mod-beads-tree` shows the open beads (`bd`) issues as a tree in a pane, and `/mod-beads-tree` toggles it. |
 
 Codex needs no Codex-specific manifest: it discovers plugins through `.claude-plugin/marketplace.json` and loads their components from the default paths.
 
@@ -81,7 +81,7 @@ Working rules live in `AGENTS.md`, one copy. Accumulated facts are not in the re
 | What you changed | How to actually verify it |
 |---|---|
 | Manifests, catalog | `claude plugin validate` — schema only |
-| Anything that ships | Install it, then `claude plugin details <name>@kmdv181`. The component inventory is the only thing that catches duplicate component names. |
+| Anything that ships | Install it, then `claude plugin details <name>@kmdv181-skills`. The component inventory is the only thing that catches duplicate component names. |
 | Shell scripts | Fixtures and a fake binary; assert exit codes and file contents. `ghostty-config` stubs `ghostty` and `uname`; `lang` runs `scripts/test.sh`, and also scores model output with `tests/probe.sh`. |
 | Anything that changes agent behaviour | Run the same prompt with the plugin enabled and disabled. A probe that passes in both arms proves nothing — pick one where the baseline plausibly fails. |
 

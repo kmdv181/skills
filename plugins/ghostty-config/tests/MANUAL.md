@@ -22,7 +22,7 @@ what follows is version-specific to Ghostty:
 
 ```sh
 /Applications/Ghostty.app/Contents/MacOS/ghostty +version | head -1
-claude plugin details ghostty-config@kmdv181 | head -1
+claude plugin details ghostty-config@kmdv181-skills | head -1
 ```
 
 This file ships inside the plugin, so its own version is whichever one you

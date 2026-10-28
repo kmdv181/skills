@@ -23,7 +23,7 @@ If you search and find nothing:
 | What changed | What actually caught problems |
 |---|---|
 | Manifests, frontmatter | `claude plugin validate . --strict`, and again per plugin directory — the per-directory run is the one that reads skill and command YAML |
-| Anything shipped to users | `claude plugin marketplace add kmdv181/skills` → `install` → `claude plugin details <plugin>@kmdv181`. The component inventory caught a duplicate skill/command name that validation passes clean. |
+| Anything shipped to users | `claude plugin marketplace add kmdv181/skills` → `install` → `claude plugin details <plugin>@kmdv181-skills`. The component inventory caught a duplicate skill/command name that validation passes clean. |
 | Shell scripts | Three tiers, not one — see below. `plugins/ghostty-config/tests/` is the worked example. |
 | Anything an agent reads and acts on | A hand-run session against the real thing. `plugins/ghostty-config/tests/MANUAL.md` — the automated suite passes on prose that instructs the agent to do the wrong thing. |
 | Claims about an upstream tool | `gh api repos/<org>/<repo>/contents/<path>`, pinned with `?ref=<tag>` to the version actually installed. Reading `Config.zig` corrected a config load order a docs summary had backwards, and `@?ref=v1.3.1` settled which CLI flags existed in the user's build. |

@@ -16,14 +16,14 @@ Claude Code:
 
 ```
 /plugin marketplace add kmdv181/skills
-/plugin install lang@kmdv181
+/plugin install lang@kmdv181-skills
 ```
 
 Codex:
 
 ```
 codex plugin marketplace add kmdv181/skills
-codex plugin add lang@kmdv181
+codex plugin add lang@kmdv181-skills
 ```
 
 Codex does not run a plugin hook until you approve it, once per machine. Start Codex interactively once after you install the plugin, and approve the hooks. The rule docs show how to check that a rule is loaded.

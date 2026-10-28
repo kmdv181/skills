@@ -24,14 +24,14 @@ Claude Code:
 
 ```sh
 /plugin marketplace add kmdv181/skills
-/plugin install ghostty-config@kmdv181
+/plugin install ghostty-config@kmdv181-skills
 ```
 
 Codex:
 
 ```sh
 codex plugin marketplace add kmdv181/skills
-codex plugin add ghostty-config@kmdv181
+codex plugin add ghostty-config@kmdv181-skills
 ```
 
 Start a new session after installation. Set `GHOSTTY_BIN` if your install is not on `PATH` and is not at `/Applications/Ghostty.app/Contents/MacOS/ghostty`.

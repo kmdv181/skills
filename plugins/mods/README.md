@@ -1,4 +1,4 @@
-# mod
+# mods
 
 Claude Code mods by kmdv, in one plugin. A mod changes Claude Code's own interface: a pane, a band, a slash command or a hook on tool calls.
 
@@ -18,13 +18,13 @@ It needs `bd` on `PATH` and a beads workspace in the project. Without them, the 
 
 ```
 /plugin marketplace add kmdv181/skills
-/plugin install mod@kmdv181
+/plugin install mods@kmdv181-skills
 ```
 
 Install it at the scope you want: for you on this machine (`user`), for everyone in a project (`project`), or for you in one project (`local`). From a shell:
 
 ```bash
-claude plugin install mod@kmdv181 --scope project
+claude plugin install mods@kmdv181-skills --scope project
 ```
 
 ## Develop
@@ -32,14 +32,14 @@ claude plugin install mod@kmdv181 --scope project
 Load a working copy for one session:
 
 ```bash
-claude --plugin-dir plugins/mod
+claude --plugin-dir plugins/mods
 ```
 
 Check and test it. The engine writes `.claude-plugin/types/` on first load, and `tsconfig.json` extends it.
 
 ```bash
-claude plugin validate plugins/mod
-claude plugin test plugins/mod
+claude plugin validate plugins/mods
+claude plugin test plugins/mods
 ```
 
 ## Layout
@@ -49,7 +49,7 @@ claude plugin test plugins/mod
 hooks/hooks.json                 names the one hooks module
 hooks/register.ts                calls the register of each mod
 hooks/mod-beads-tree/            the beads tree mod: register.tsx, tree.ts
-types/index.d.ts                 state contract: one key per mod under PluginState["mod"]
+types/index.d.ts                 state contract: one key per mod under PluginState["mods"]
 tests/mod-beads-tree.test.ts
 ```
 

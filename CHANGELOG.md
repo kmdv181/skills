@@ -2,6 +2,11 @@
 
 What this marketplace has shipped, newest first. Versions refer to the plugin manifests; dates come from git history, and the commit messages carry the full reasoning and evidence behind every line here.
 
+## 2026-10-29
+
+- The marketplace is renamed from `kmdv181` to `kmdv181-skills`. Plugin ids are now `<plugin>@kmdv181-skills`. On every machine, remove the old marketplace, add `kmdv181/skills` again and reinstall. `lang` 0.1.1 and `ghostty-config` 0.1.13 only update the install commands in their docs.
+- `mods` 0.1.0 — the `mod` plugin is renamed to `mods`. Nothing else changed. Uninstall `mod@kmdv181` and install `mods@kmdv181-skills`.
+
 ## 2026-10-28
 
 - `mod` 0.1.0 — new plugin for Claude Code mods. Its first mod is `mod-beads-tree`, moved from `kmdv181/skillsync-design`, where it was the plugin `beads-tree` 0.2.0. The command `/beads` is now `/mod-beads-tree`, and the pane id and state key use the same name. The pane works as before.

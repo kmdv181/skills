@@ -47,7 +47,7 @@ variable.
 
 ```
 codex plugin marketplace add kmdv181/skills
-codex plugin add lang@kmdv181
+codex plugin add lang@kmdv181-skills
 ```
 
 **Then trust the hook, once per machine.** Installing or enabling a plugin does

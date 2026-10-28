@@ -1,6 +1,6 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "kmdv181",
+  "name": "kmdv181-skills",
   "description": "kmdv181 — plugins and skills for Claude Code and Codex by kmdv.",
   "owner": {
     "name": "kmdv",
@@ -12,7 +12,7 @@
       "source": "./plugins/lang",
       "description": "Three language rules, injected at session start so they hold on every turn: keep every artifact in English, write English prose at CEFR B2 level, and never hard-wrap a paragraph.",
       "category": "productivity",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": {
         "name": "Kirill Medvedev",
         "email": "km@kmdv.dev"
@@ -23,15 +23,15 @@
       "source": "./plugins/ghostty-config",
       "description": "Edit your Ghostty terminal config with Claude Code or Codex. It validates every change before touching the real file and keeps rollbackable backups.",
       "category": "productivity",
-      "version": "0.1.12",
+      "version": "0.1.13",
       "author": {
         "name": "kmdv",
         "email": "i@kmdv.dev"
       }
     },
     {
-      "name": "mod",
-      "source": "./plugins/mod",
+      "name": "mods",
+      "source": "./plugins/mods",
       "description": "Claude Code mods by kmdv. mod-beads-tree shows the open beads (bd) issues as a parent/child tree in a pane, and /mod-beads-tree toggles it.",
       "category": "productivity",
       "version": "0.1.0",

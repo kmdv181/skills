@@ -20,7 +20,7 @@ const ICONS: Record<string, string> = {
 }
 const COLORS: Record<string, string> = { in_progress: 'warning', blocked: 'error' }
 
-const snapshot = atom({ plugin: 'mod', key: 'mod-beads-tree-snapshot' } as const, {
+const snapshot = atom({ plugin: 'mods', key: 'mod-beads-tree-snapshot' } as const, {
   issues: [],
   error: null,
 })
