@@ -4,6 +4,7 @@ What this marketplace has shipped, newest first. Versions refer to the plugin ma
 
 ## 2026-10-28
 
+- `mod` 0.1.0 — new plugin for Claude Code mods. Its first mod is `mod-beads-tree`, moved from `kmdv181/skillsync-design`, where it was the plugin `beads-tree` 0.2.0. The command `/beads` is now `/mod-beads-tree`, and the pane id and state key use the same name. The pane works as before.
 - `lang` 0.1.0 — new plugin that bundles three earlier plugins: `always-english-artifacts` (0.2.2), `always-simpler-english` (0.1.1) and `always-soft-wrap` (0.1.1). The rules did not change. Each rule keeps its own hook, payload, doc and test script. The three old plugins are removed from the marketplace, so uninstall them and install `lang@kmdv181` on every machine.
 - `nightcap` moved to the private marketplace `kmdv181/skills-private`. Reinstall it as `nightcap@skills-private`.
 

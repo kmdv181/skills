@@ -33,6 +33,7 @@ codex plugin marketplace upgrade       # Codex
 |---|---|---|---|
 | [`lang`](plugins/lang) | yes | untested | Three language rules in one plugin: keep every artifact in English, write English prose at CEFR B2 level, and never hard-wrap a paragraph. |
 | [`ghostty-config`](plugins/ghostty-config) | yes | yes | Conversational editing of the Ghostty terminal config, with validation before write and rollback. |
+| [`mod`](plugins/mod) | yes | no | Claude Code mods. `mod-beads-tree` shows the open beads (`bd`) issues as a tree in a pane, and `/mod-beads-tree` toggles it. |
 
 Codex needs no Codex-specific manifest: it discovers plugins through `.claude-plugin/marketplace.json` and loads their components from the default paths.
 

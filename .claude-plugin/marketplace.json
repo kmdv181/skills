@@ -28,6 +28,17 @@
         "name": "kmdv",
         "email": "i@kmdv.dev"
       }
+    },
+    {
+      "name": "mod",
+      "source": "./plugins/mod",
+      "description": "Claude Code mods by kmdv. mod-beads-tree shows the open beads (bd) issues as a parent/child tree in a pane, and /mod-beads-tree toggles it.",
+      "category": "productivity",
+      "version": "0.1.0",
+      "author": {
+        "name": "Kirill Medvedev",
+        "email": "i@kmdv.dev"
+      }
     }
   ]
 }
