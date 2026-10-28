@@ -1,15 +1,10 @@
-# always-english-artifacts
+# Rule: artifact-language
 
-Talk to the agent in any language; keep everything it writes down in English.
-
-```
-/plugin marketplace add kmdv181/skills
-/plugin install always-english-artifacts@kmdv181
-```
+One of the three rules in the [`lang`](../README.md) plugin. Install steps and the file layout are in that README.
 
 ## What it does
 
-At session start the plugin injects one rule as developer context: **anything
+At session start the plugin injects this rule as developer context: **anything
 that outlives the conversation is written in English.** Source code, comments,
 identifiers, docstrings, Markdown, config, commit messages, branch names, PR
 titles and bodies, review comments, and issue text written through tools like
@@ -52,7 +47,7 @@ variable.
 
 ```
 codex plugin marketplace add kmdv181/skills
-codex plugin add always-english-artifacts@kmdv181
+codex plugin add lang@kmdv181
 ```
 
 **Then trust the hook, once per machine.** Installing or enabling a plugin does
@@ -75,7 +70,7 @@ session after install.
 ## Editing the rule
 
 `rules/artifact-language.md` is the source. The hook does not read it directly —
-it prints `hooks/session-start.json`, generated from the Markdown:
+it prints `hooks/artifact-language.json`, generated from the Markdown:
 
 ```bash
 scripts/build.sh     # regenerate the payload; needs jq
@@ -87,15 +82,3 @@ Commit both files. `scripts/test.sh` fails if they have drifted.
 The payload is pre-encoded rather than built at session start so the hook has no
 runtime dependency beyond `cat`. A hook that needs `jq` fails silently on a
 machine without it, and a silently missing rule is worse than no plugin.
-
-## Layout
-
-```
-.claude-plugin/plugin.json
-hooks/hooks.json            SessionStart -> scripts/emit-rule.sh
-hooks/session-start.json    generated payload, committed
-rules/artifact-language.md  the rule, as prose
-scripts/emit-rule.sh        cat the payload
-scripts/build.sh            markdown -> payload
-scripts/test.sh             payload shape, drift, and no-jq execution
-```

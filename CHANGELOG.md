@@ -2,6 +2,11 @@
 
 What this marketplace has shipped, newest first. Versions refer to the plugin manifests; dates come from git history, and the commit messages carry the full reasoning and evidence behind every line here.
 
+## 2026-10-28
+
+- `lang` 0.1.0 — new plugin that bundles three earlier plugins: `always-english-artifacts` (0.2.2), `always-simpler-english` (0.1.1) and `always-soft-wrap` (0.1.1). The rules did not change. Each rule keeps its own hook, payload, doc and test script. The three old plugins are removed from the marketplace, so uninstall them and install `lang@kmdv181` on every machine.
+- `nightcap` moved to the private marketplace `kmdv181/skills-private`. Reinstall it as `nightcap@skills-private`.
+
 ## 2026-09-09
 
 - `ghostty-config` 0.1.12 — give edit and undo distinct invocation branches, use Codex-compatible skill frontmatter, soft-wrap both skill files, and document Codex alongside Claude Code.

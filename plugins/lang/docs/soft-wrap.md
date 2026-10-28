@@ -1,15 +1,10 @@
-# always-soft-wrap
+# Rule: soft-wrap
 
-One line per paragraph: the file never hard-wraps prose; your editor soft-wraps it.
-
-```
-/plugin marketplace add kmdv181/skills
-/plugin install always-soft-wrap@kmdv181
-```
+One of the three rules in the [`lang`](../README.md) plugin. Install steps and the file layout are in that README.
 
 ## What it does
 
-At session start the plugin injects one rule as developer context: **never hard-wrap a paragraph.** A paragraph — and any sentence inside one — is a single line in the file; rendering long lines is the reader's editor's job. That covers Markdown and plain-text prose, list items and their would-be continuations, and prose that travels through tools rather than files, such as issue descriptions and memory entries.
+At session start the plugin injects this rule as developer context: **never hard-wrap a paragraph.** A paragraph — and any sentence inside one — is a single line in the file; rendering long lines is the reader's editor's job. That covers Markdown and plain-text prose, list items and their would-be continuations, and prose that travels through tools rather than files, such as issue descriptions and memory entries.
 
 It leaves alone the things that have their own formatting: code and fenced blocks, comments inside source code, heading and table structure, YAML frontmatter, and commit message bodies, which keep git's conventional ~72-column wrapping because they are read by tools that do not soft wrap.
 
@@ -26,13 +21,13 @@ The matcher covers `startup|resume|clear|compact|fork`, so the rule is re-inject
 
 ## Codex
 
-The mechanism is the one `always-english-artifacts` runs under Codex unmodified: discovery through this repo's `.claude-plugin/marketplace.json`, the same `hooks/hooks.json` path, the same `hookSpecificOutput.additionalContext` payload. This plugin itself has not been run under Codex yet — the marketplace README's harness table records runs, not expectations.
+The mechanism is the one the artifact-language rule runs under Codex unmodified: discovery through this repo's `.claude-plugin/marketplace.json`, the same `hooks/hooks.json` path, the same `hookSpecificOutput.additionalContext` payload. This rule itself has not been run under Codex yet — the marketplace README's harness table records runs, not expectations.
 
 If you try it there, remember that installing does not trust the hook: Codex skips plugin-bundled hooks, silently, until you approve the hook definition once per machine. Start Codex interactively once after installing.
 
 ## Editing the rule
 
-`rules/soft-wrap.md` is the source. The hook does not read it directly — it prints `hooks/session-start.json`, generated from the Markdown:
+`rules/soft-wrap.md` is the source. The hook does not read it directly — it prints `hooks/soft-wrap.json`, generated from the Markdown:
 
 ```bash
 scripts/build.sh     # regenerate the payload; needs jq
@@ -42,15 +37,3 @@ scripts/test.sh      # verify; run before committing
 Commit both files. `scripts/test.sh` fails if they have drifted — and it also fails if the rule text itself contains a hard-wrapped paragraph, so the rule cannot ship in violation of itself.
 
 The payload is pre-encoded rather than built at session start so the hook has no runtime dependency beyond `cat`. A hook that needs `jq` fails silently on a machine without it, and a silently missing rule is worse than no plugin.
-
-## Layout
-
-```
-.claude-plugin/plugin.json
-hooks/hooks.json            SessionStart -> scripts/emit-rule.sh
-hooks/session-start.json    generated payload, committed
-rules/soft-wrap.md          the rule, as prose
-scripts/emit-rule.sh        cat the payload
-scripts/build.sh            markdown -> payload
-scripts/test.sh             payload shape, drift, self-compliance, no-jq execution
-```

@@ -1,0 +1,27 @@
+{
+  "description": "Inject the artifact-language, simpler-English and soft-wrap rules as developer context at session start",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact|fork",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}\"/scripts/emit-rule.sh artifact-language",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}\"/scripts/emit-rule.sh simpler-english",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}\"/scripts/emit-rule.sh soft-wrap",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

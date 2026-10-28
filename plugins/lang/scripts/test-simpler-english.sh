@@ -8,9 +8,9 @@
 set -eu
 
 root=$(CDPATH='' cd -- "$(dirname -- "$0")/.." && pwd)
-payload="$root/hooks/session-start.json"
+payload="$root/hooks/simpler-english.json"
 rule="$root/rules/simpler-english.md"
-readme="$root/README.md"
+readme="$root/docs/simpler-english.md"
 measure="$root/scripts/measure.sh"
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
@@ -42,7 +42,7 @@ no_banned() {
   fi
 }
 
-echo "always-simpler-english"
+echo "rule: simpler-english"
 
 # 1. The payload is the shape both Claude Code and Codex read.
 if command -v jq >/dev/null 2>&1; then
@@ -102,7 +102,7 @@ if command -v jq >/dev/null 2>&1; then
   within_limits "$rule" "rule text"
   no_banned "$rule" "rule text"
 
-  # 4e. The README is the first text written under the rule, so it must pass it.
+  # 4e. The rule's doc is the first text written under the rule, so it must pass it.
   within_limits "$readme" "README"
   no_banned "$readme" "README"
 else
@@ -110,7 +110,7 @@ else
 fi
 
 # 5. emit-rule.sh reproduces the payload byte for byte.
-if "$root/scripts/emit-rule.sh" | cmp -s - "$payload"
+if "$root/scripts/emit-rule.sh" simpler-english | cmp -s - "$payload"
 then ok "emit-rule.sh output matches the payload"
 else bad "emit-rule.sh output differs from the payload"
 fi
@@ -122,15 +122,15 @@ mkdir -p "$tmp/bin"
 for b in sh cat dirname; do
   src=$(command -v "$b") && cp "$(readlink -f "$src")" "$tmp/bin/$b"
 done
-if [ ! -e "$tmp/bin/jq" ] && env -i PATH="$tmp/bin" "$tmp/bin/sh" "$root/scripts/emit-rule.sh" 2>/dev/null | cmp -s - "$payload"
+if [ ! -e "$tmp/bin/jq" ] && env -i PATH="$tmp/bin" "$tmp/bin/sh" "$root/scripts/emit-rule.sh" simpler-english 2>/dev/null | cmp -s - "$payload"
 then ok "runs on a PATH with no jq"
 else bad "does not run without jq"
 fi
 
 # 7. A missing payload fails loudly instead of emitting nothing successfully.
 cp -r "$root" "$tmp/copy"
-rm -f "$tmp/copy/hooks/session-start.json"
-if "$tmp/copy/scripts/emit-rule.sh" >/dev/null 2>&1
+rm -f "$tmp/copy/hooks/simpler-english.json"
+if "$tmp/copy/scripts/emit-rule.sh" simpler-english >/dev/null 2>&1
 then bad "missing payload exited 0"
 else ok "missing payload exits non-zero"
 fi

@@ -1,19 +1,14 @@
-# always-simpler-english
+# Rule: simpler-english
 
-Every piece of English prose the agent writes for a person is easy to read at CEFR B2 level or a little above.
-
-```
-/plugin marketplace add kmdv181/skills
-/plugin install always-simpler-english@kmdv181
-```
+One of the three rules in the [`lang`](../README.md) plugin. Install steps and the file layout are in that README.
 
 ## What it does
 
-At session start the plugin injects one rule as developer context. **Write English that a non-native reader at B2 level, or a little above, can read once and understand.** The rule gives numbers, not adjectives. Sentences aim for about 18 words and never pass 30. Each sentence carries one idea, in the active voice, with a named subject. The rule prefers the common word over the C1 word when both mean the same thing. It bans idioms, irony, double negatives, Latin abbreviations, em dashes and semicolons.
+At session start the plugin injects this rule as developer context. **Write English that a non-native reader at B2 level, or a little above, can read once and understand.** The rule gives numbers, not adjectives. Sentences aim for about 18 words and never pass 30. Each sentence carries one idea, in the active voice, with a named subject. The rule prefers the common word over the C1 word when both mean the same thing. It bans idioms, irony, double negatives, Latin abbreviations, em dashes and semicolons.
 
 It covers everything the agent writes in English for a person: chat replies, Markdown, commit messages, PR bodies, code comments and issue text. Text that only an agent will read is exempt, such as memory entries and prompts for subagents.
 
-It sets the reading level, not the language. A conversation in Russian still gets replies in Russian. Which artifacts must be in English is the job of `always-english-artifacts`, and the two plugins compose.
+It sets the reading level, not the language. A conversation in Russian still gets replies in Russian. Which artifacts must be in English is the job of the artifact-language rule, and the two rules compose.
 
 Two things stay exact whatever the level. Technical terms are never replaced with a vaguer word, so "mutex" stays "mutex". Code, identifiers, commands, quoted errors and the user's own words are never simplified. When precision and simplicity conflict, precision wins.
 
@@ -31,11 +26,11 @@ Sentence length separates A-level readers from B-level readers, but it barely se
 
 ## Codex
 
-The mechanism is the one `always-english-artifacts` runs under Codex unmodified. Codex discovers the plugin through this repo's `.claude-plugin/marketplace.json`, reads the same `hooks/hooks.json`, accepts the same `hookSpecificOutput.additionalContext` payload, and supplies `CLAUDE_PLUGIN_ROOT` to the hook as a compatibility variable. No Codex-specific manifest is needed.
+The mechanism is the one the artifact-language rule runs under Codex unmodified. Codex discovers the plugin through this repo's `.claude-plugin/marketplace.json`, reads the same `hooks/hooks.json`, accepts the same `hookSpecificOutput.additionalContext` payload, and supplies `CLAUDE_PLUGIN_ROOT` to the hook as a compatibility variable. No Codex-specific manifest is needed.
 
 ```
 codex plugin marketplace add kmdv181/skills
-codex plugin add always-simpler-english@kmdv181
+codex plugin add lang@kmdv181
 ```
 
 **Then trust the hook, once per machine.** Installing does not trust it. Codex skips plugin-bundled hooks, silently, until you approve the hook definition, and until then the plugin reports as installed while injecting nothing. Start Codex interactively once after installing and approve. To confirm without the interactive step:
@@ -47,26 +42,26 @@ printf 'One word, YES or NO: is a block titled "Simpler English" in your context
 
 The trust hash covers `hooks/hooks.json`, so editing that file needs re-approval. Editing the rule text does not, because the payload is a separate file.
 
-This plugin itself has not been run under Codex yet. The commands above are the ones `always-english-artifacts` was verified with, and the marketplace README's harness table records runs, not expectations.
+This rule itself has not been run under Codex yet. The commands above are the ones the artifact-language rule was verified with, and the marketplace README's harness table records runs, not expectations.
 
 ## Editing the rule
 
-`rules/simpler-english.md` is the source. The hook does not read it directly. It prints `hooks/session-start.json`, generated from the Markdown:
+`rules/simpler-english.md` is the source. The hook does not read it directly. It prints `hooks/simpler-english.json`, generated from the Markdown:
 
 ```bash
 scripts/build.sh     # regenerate the payload; needs jq
 scripts/test.sh      # verify; run before committing
 ```
 
-Commit both files. `scripts/test.sh` fails if they have drifted. It also fails if the rule text, or this README, breaks the rule's own limits. The limits it checks are no sentence over 30 words, a mean under 20, and no em dash, semicolon or Latin abbreviation. The rule cannot ship in violation of itself.
+Commit both files. `scripts/test.sh` fails if they have drifted. It also fails if the rule text, or this doc, breaks the rule's own limits. The limits it checks are no sentence over 30 words, a mean under 20, and no em dash, semicolon or Latin abbreviation. The rule cannot ship in violation of itself.
 
 So the rule exists twice on disk, once as Markdown and once inside the JSON payload. That is deliberate. The Markdown is for people: it diffs cleanly, reads in a review, and is what you edit. The JSON is what the CLI consumes, pre-encoded so the hook has no runtime dependency beyond `cat` and no string escaping happens at session start. A hook that needs `jq` fails silently on a machine without it, and a silently missing rule is worse than no plugin. The drift check in `scripts/test.sh` is what keeps the two copies honest.
 
 ## Verifying
 
-`scripts/measure.sh` is the scorer. It reads English prose on stdin and prints sentence count, mean and maximum words per sentence, and counts of em dashes, semicolons and Latin abbreviations. `scripts/test.sh` calibrates it against two hardcoded fixtures before trusting it, then scores the rule and this README.
+`scripts/measure.sh` is the scorer. It reads English prose on stdin and prints sentence count, mean and maximum words per sentence, and counts of em dashes, semicolons and Latin abbreviations. `scripts/test.sh` calibrates it against two hardcoded fixtures before trusting it, then scores the rule and this doc.
 
-Schema checks say nothing about whether a rule changes what a model writes. `tests/probe.sh` measures that. It runs a fixed set of prompts through `claude -p` with the plugin enabled and then disabled, scores every reply with `measure.sh`, and prints a verdict. It spends tokens, so it refuses to run unless `PROBE_BUDGET_TOKENS` is set, and it stops once the total reaches that cap:
+Schema checks say nothing about whether a rule changes what a model writes. `tests/probe.sh` measures that. It runs a fixed set of prompts through `claude -p` with the `lang` plugin enabled and then disabled, scores every reply with `measure.sh`, and prints a verdict. The plugin is a bundle, so the "disabled" run has none of the three rules. It spends tokens, so it refuses to run unless `PROBE_BUDGET_TOKENS` is set, and it stops once the total reaches that cap:
 
 ```bash
 PROBE_BUDGET_TOKENS=400000 tests/probe.sh
@@ -75,17 +70,3 @@ PROBE_BUDGET_TOKENS=400000 tests/probe.sh
 It needs the plugin installed from a scratch copy of this marketplace named `kmdv181-local`, and it skips loudly without it. Results stay in `PROBE_OUT`. A rerun with the same directory and a wider `PROBE_SET` reuses finished runs and spends tokens only on the new prompts.
 
 Measured on 2026-09-02 against `claude-fable-5-1` through `claude -p`, 24 runs, 172k tokens. The disabled baseline already wrote no em dashes or semicolons and averaged 11 to 13 words per sentence, so the rule's measurable effect is on the tail. On the two prompts where the baseline broke the cap, disabled runs had sentences of 31 to 35 words. Enabled runs peaked at 19 to 29 words, with means about a fifth lower. Two prompts were uninformative because the baseline already obeyed the rule. The over-reach checks passed: Russian stayed Russian, and a commit message and a code sample did not grow. The exemption for agent-only text is not measured by the probe. A memory entry from the model is short with or without the rule, so the two arms would not differ. And no difference is also what a broken exemption would produce.
-
-## Layout
-
-```
-.claude-plugin/plugin.json
-hooks/hooks.json            SessionStart -> scripts/emit-rule.sh
-hooks/session-start.json    generated payload, committed
-rules/simpler-english.md    the rule, as prose
-scripts/emit-rule.sh        cat the payload
-scripts/build.sh            markdown -> payload
-scripts/measure.sh          score prose: sentence lengths and banned tokens
-scripts/test.sh             payload shape, drift, scorer calibration, self-compliance
-tests/probe.sh              enabled vs disabled, scored with measure.sh
-```
