@@ -118,7 +118,7 @@ test('the pane draws the tree from bd list', async ($, on) => {
       props: PANE_PROPS,
     })
 
-    expect(argv).toEqual(['bd', 'list', '--json', '--limit', '0'])
+    expect(argv).toEqual(['bd', 'list', '--json', '--brief', '--limit', '0'])
     expect((await ui.find({ text: /6 not closed: 1 in progress, 0 blocked/ }))?.text).toMatch(/6 not closed: 1 in progress, 0 blocked/)
     expect((await ui.find({ text: /│   └── .*p-e\.1\.1/ }))?.text).toMatch(/│   └── .*p-e\.1\.1/)
     await ui.unmount()
@@ -218,4 +218,23 @@ test('/mod-beads-tree open and /mod-beads-tree close do not toggle', async ($, o
   expect((await runBeads($, ' Close ')).text).toBe('Beads pane closed.')
   expect((await runBeads($, 'close')).text).toBe('Beads pane is already closed.')
   expect((await runBeads($, 'shut')).text).toMatch(/Unknown argument "shut"/)
+})
+
+test('the pane says when the bd output was cut short', async ($, on) => {
+  stubEngine(on)
+  on('process.run', async () => ({
+    value: { exitCode: 0, stdout: '[\n  {', stderr: '', isStdoutTruncated: true, isStderrTruncated: false },
+  }))
+  await $.session.start({ cwd: '/repo', surface: 'terminal', isInteractive: true })
+
+  const ui = await $.ui.mount({
+    plugin: 'mods',
+    surface: 'terminal',
+    component: 'Pane',
+    requestId: 'mod-beads-tree',
+    props: PANE_PROPS,
+  })
+
+  expect((await ui.find({ text: /bd output is too large/ }))?.text).toMatch(/bd output is too large/)
+  await ui.unmount()
 })
