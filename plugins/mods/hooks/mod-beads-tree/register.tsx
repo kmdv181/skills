@@ -32,17 +32,23 @@ let latest = 0
 // reload forgets it until the next draw.
 let lastDraw: string | null = null
 
-/** Reads the open issues with `bd list` and stores them for the pane. Never throws. */
+/**
+ * Reads the open issues with `bd list` and stores them for the pane. Never throws.
+ * `--brief` drops the descriptions the pane never shows: with long ones, a few
+ * hundred issues come to more than a megabyte of JSON.
+ */
 async function refresh($: EngineInterface): Promise<void> {
   const run = ++latest
   let next: Snapshot
   try {
-    const { exitCode, stdout, stderr } = await $.process.run(
-      ['bd', 'list', '--json', '--limit', '0'],
+    const { exitCode, stdout, stderr, isStdoutTruncated } = await $.process.run(
+      ['bd', 'list', '--json', '--brief', '--limit', '0'],
       { timeoutMs: BD_TIMEOUT_MS },
     )
     if (exitCode !== 0) {
       next = { issues: [], error: stderr.trim().split('\n').pop() || `bd exited with ${exitCode}` }
+    } else if (isStdoutTruncated) {
+      next = { issues: [], error: 'bd output is too large for the pane: too many open issues' }
     } else {
       try {
         next = { issues: parseIssues(stdout), error: null }
