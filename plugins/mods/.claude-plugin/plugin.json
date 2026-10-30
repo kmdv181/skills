@@ -1,6 +1,6 @@
 {
   "name": "mods",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Claude Code mods by kmdv. mod-beads-tree shows the open beads (bd) issues as a parent/child tree in a pane, and /mod-beads-tree toggles it.",
   "author": {
     "name": "Kirill Medvedev",
